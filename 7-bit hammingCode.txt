@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+int main () {
+
+  //generate hamming code
+  int d[100], b[10];
+  int i, c1, c2, c3;
+  cout << "Enter the input bits";
+  cin >> d[3];
+  cin >> d[5];
+  cin >> d[6];
+  cin >> d[7];
+
+  d[1] = d[3] ^ d[5] ^ d[7];
+  d[2] = d[3] ^ d[6] ^ d[7];
+  d[4] = d[5] ^ d[6] ^ d[7];
+
+  for (i = 1; i < 8; i++) {
+    cout << d[i] << "\t";
+  }
+
+  //error detection
+  cout << "\nEnter the 7 bit hamming code ";
+  for (i = 1; i < 8; i++) {
+    cin>>b[i];
+  }
+  c1 = b[1] ^ b[3] ^ b[5] ^ b[7];
+  c2 = b[2] ^ b[3] ^ b[6] ^ b[7];
+  c3 = b[4] ^ d[5] ^ d[6] ^ d[7];
+
+  if (c1 == 0 && c2 == 0 && c3 == 0) {
+    cout << "no error";
+  } else {
+    cout << " error";
+  }
+}

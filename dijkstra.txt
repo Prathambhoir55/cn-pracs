@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+#define INT_MAX 999
+
+int distance[6];
+int visited[6];
+
+int default_mat[6][6] = {
+	{0, 2, 5, 1, 999, 999},
+	{2, 0, 3, 2, 999, 999},
+	{5, 3, 0, 3, 1, 5},
+	{1, 2, 3, 0, 1, 999},
+	{999, 999, 1, 1, 0, 2},
+	{999, 999, 5, 999, 2, 0},
+};
+
+int min(int a, int b) {
+	return a <= b ? a : b;
+}
+//gets the min dist ka respective node
+int extract_min(int visited[6], int distance[6], int default_mat[6][6]) {
+	int min = INT_MAX, node = -1;
+	for (int i = 0; i < 6; ++i) {
+		if (visited[i]) continue;
+		if (distance[i] < min) {
+			min = distance[i];
+			node = i;
+		}
+	}
+	printf("min :%d \t",min);
+	return node;
+}
+
+void display(int default_mat[6][6]) {
+	for (int i = 0; i < 6; ++i) {
+		for (int j = 0; j < 6; ++j)
+			printf("%d ", default_mat[i][j]);
+		printf("\n");
+	}
+		printf("\n");
+}
+
+void dijkastra(int default_mat[6][6], int source) {
+	//initialzing dist_mat
+
+	for (int i = 0; i < 6; ++i) {
+		visited[i] = 0;
+		distance[i] = i == source ? 0 : INT_MAX;
+	}
+	
+	while (1) {
+		int curr = extract_min(visited, distance, default_mat);
+		printf("curr :%d \n", curr);
+		if (curr == -1)
+			break;
+
+		visited[curr] = 1;
+		
+		// Iterate over every vertex
+		for (int i = 0; i < 6; ++i) {
+			// Get minimum distance and assign it in the distance array
+			if (default_mat[curr][i] != INT_MAX && !visited[i]) {
+				int min_dist = min(distance[i], distance[curr] + default_mat[curr][i]);
+				distance[i] = min_dist;
+			}
+		}
+	}
+	printf("Minimum distance array\n");
+	for (int i = 0; i < 6; ++i)
+		printf("%d ", distance[i]);
+	printf("\n");
+}
+
+int main() {
+	dijkastra(default_mat, 0);
+	// display(default_mat);
+	return 0;
+}

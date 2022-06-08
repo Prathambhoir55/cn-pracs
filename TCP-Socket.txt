@@ -1,0 +1,42 @@
+//put both codes in two separate files and run on diff terminals
+//run server first
+//CLIENT CODE
+
+import java.io.*;
+import java.net.*;
+public class TCPclient
+
+{
+	public static void main(String z[]) throws Exception
+	{
+	    String msg;
+	    Socket cs = new Socket("localhost",80);
+	    BufferedReader br = new BufferedReader(new InputStreamReader(cs.getInputStream()));
+	    msg=br.readLine();
+	    System.out.println(msg);
+	    cs.close();
+	 }
+}
+
+
+//SERVER CODE
+import java.io.*;
+import java.net.*;
+public class TCPserver
+
+{
+	public static void main(String z[]) throws Exception
+	{
+		String m;
+	    ServerSocket ss = new ServerSocket(80);
+	    while(true)
+	    {
+		Socket ss1 = ss.accept();   
+		String m1[] = {"monday","tuesday","wednesday","thursday","friday","saturday","sunday"};
+	        int i = (int)(Math.random()*m1.length);
+	        m=m1[i];
+	        PrintStream ps = new PrintStream(ss1.getOutputStream());
+	        ps.println("message="+m);
+	    }
+	}
+}

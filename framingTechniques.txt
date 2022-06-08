@@ -1,0 +1,117 @@
+#include <iostream>
+using namespace std;
+
+void characterStuffing() {
+  //flag = f
+  //special character = e
+  string input;
+  char output[100];
+  int input_len, i, j=0;
+  cout << "Enter input string: ";
+  cin >> input;
+  input_len = input.length();
+  
+  for (i = 0; i < input_len; i++){
+    if (input[i] == 'f'|| input[i] == 'e') {
+      output[j] = 'e';
+      j++;
+      output[j] = input[i];
+      j++;
+      } else {
+      output[j] = input[i];
+      j++;
+    }
+  }
+  output[j] = '\0';
+  cout << output;
+}
+
+void bitStuffing() {
+  int count=0, j=0;
+  string input;
+  char output[50];
+  cout << "Enter the input bits: ";
+  cin >> input;
+  for (int i = 0; i < input.length(); i++) {
+    if (input[i] == '1')
+      count++;
+    else
+      count = 0;
+    output[j] = input[i];
+    j++;
+    if (count == 5)
+    {
+      output[j] = '0';
+      j++;
+      count = 0;
+    }
+  }
+  output[j] = '\0';
+  cout << "stufffed data at intermediate site is: \n 01111110 \t" << output << "\t 01111110";
+}
+
+// int countDigits (num) {
+//   int count = 1;
+//   while(num%10 !=0) {
+//     count++;
+//   }
+//   return count;
+// }
+void characterCount() {
+  int n, digits, count=0;
+  int data[100];
+  string output;
+  cout << "Enter data ";
+  cin >> n;
+  while(n != 0) {
+    n /= 10;
+    count++;
+  }
+  
+  cout<< count;
+
+  
+  // cout << "Enter number of data frames: ";
+  // cin >> n;
+
+  // for (int i = 0; i < n; i++) {
+  //   cout << "Enter data: ";
+  //   cin>> data[i]
+  // }
+
+  // data[n] = '\0';
+  // for (int i = 0; i < n; i++ ){
+
+  // }
+}
+
+int main () {
+  int choice;
+  cout << "1. Character Stuffing" << endl;
+  cout << "2. Bit Stuffing" << endl;
+  cout << "3. Character Count" << endl;
+  cout << "4. Exit" << endl;
+  cout << "Enter your choice: ";
+
+  cin >> choice;
+
+  switch (choice) {
+    case 1:
+      characterStuffing();
+      break;
+    case 2:
+      bitStuffing();
+      break;
+
+    case 3:
+      characterCount();
+      break;
+
+    case 4:
+      break;
+
+    default:
+      cout << "Please enter a valid choice!";
+  }
+}
+

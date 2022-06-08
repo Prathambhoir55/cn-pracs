@@ -1,0 +1,70 @@
+//SENDER CODE
+#include <iostream>
+using namespace std;
+int main()
+{
+  string msg , divisor , dividend = "" ;
+
+  cout<< "Enter the message = " ;
+  getline(cin,msg);
+  cout <<"Enter the crc generator polynomial= " ;
+  getline(cin,divisor);
+
+  int m = msg.length() , n = divisor.length() ;
+  dividend += msg ;
+
+  //append zeroes
+  for (int i = 1; i<=n-1 ; i++ )
+    dividend+= '0';
+
+  //for xor division
+  for ( int i = 0 ; i <= dividend.length( ) - n; ) {
+    for ( int j = 0 ; j <n ; j++ ){
+      dividend[i+j] = dividend[i+j] == divisor[j] ? '0' : '1' ;
+    }
+    //to find next i since we did not do i++ pehle
+    for ( ; i < dividend.length() && dividend[i] != '1' ; i++);
+  }
+
+  //for getting the entire message that will be sent over the communication channel
+  cout<< "Message= " <<msg+dividend.substr(dividend.length()-n+1);
+  return 0;
+}
+
+
+//RECEIVER CODE
+
+#include <iostream>
+using namespace std;
+int main()
+{
+  string msg , divisor;
+
+  cout<< "Enter the message = " ;
+  getline(cin,msg);
+  cout <<"Enter the crc generator polynomial= " ;
+  getline(cin,divisor);
+
+  //for xor division
+  for ( int i = 0 ; i <= msg.length( ) - divisor.length(); ) {
+    for ( int j = 0 ; j <divisor.length() ; j++ ){
+      msg[i+j] = msg[i+j] == divisor[j] ? '0' : '1' ;
+    }
+    //to find next i since we did not do i++ pehle
+    for ( ; i < msg.length() && msg[i] != '1' ; i++);
+  }
+
+  // check if any 1s present
+  int flag = 0;
+  for(int i = 0 ; i < msg.length(); i++){
+    if (msg[i] == '1'){
+      flag = 1;
+      cout << "There is an error";
+      break;
+    } 
+  }
+  if(flag == 0){
+    cout << "There is no error";
+  }
+  return 0;
+}

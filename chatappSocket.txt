@@ -1,0 +1,56 @@
+//SERVER
+import java.net.*;
+import java.io.*;
+ 
+public class server
+{
+    public static void main(String[] args) throws IOException 
+    {
+        ServerSocket s = new ServerSocket(2019);     
+        System.out.println("Server Started, waiting for client");
+        Socket s1 = s.accept();
+        // Client Send
+        BufferedReader br = new BufferedReader(new InputStreamReader(s1.getInputStream()));
+        OutputStream os = s1.getOutputStream();
+        PrintStream ps  = new PrintStream(os);
+        BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+        do{         
+            String res = br.readLine();
+            System.out.println("Client Send: "+res);
+            System.out.print("Server: ");
+            String msg = br1.readLine();
+            System.out.print("\n\n");
+            ps.println(msg);
+        }
+        while(true);
+    }
+}
+
+
+
+
+//CLIENT
+import java.net.*;
+import java.io.*;
+
+public class client
+{
+    public static void main(String[] args) throws IOException 
+	{     
+        Socket s = new Socket("localhost",2019);
+        System.out.println("Client Started, waiting for server response..");
+         
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        OutputStream os = s.getOutputStream();
+        BufferedReader br1 = new BufferedReader(new InputStreamReader(s.getInputStream()));
+        PrintStream ps = new PrintStream(os);
+        do{
+            System.out.print("Client: ");
+            String msg = br.readLine();
+            ps.println(msg);
+            String res = br1.readLine();
+            System.out.println("Server Send:"+res+"\n\n");
+        }
+        while(true);  
+    }
+}

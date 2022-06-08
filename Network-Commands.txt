@@ -1,0 +1,31 @@
+1. ipconfig
+It is a command used to display all current TCP/IP network configurations values and refreshes 
+Dynamic Host Configuration Protocol (DHCP) and Dynamic Name System (DNS) settings.
+
+2. ipconfig-all or ipconfig/all
+It is used to display full TCP/IP Connections for all adapters. Adapters can represent physical 
+interfaces, such as installed network adapters or logical interfaces such as dial-up connections. 
+
+3. netstat
+It displays active TCP connections and ports the computer is using or listening to. It also displays Ethernet statistics, IP routing table and IPv4 as well as IPv6 statistics. The netstat command generates displays that shows network status and protocol statistics. Netstat displays carious types of network data depending on the command line option selected. These displays are the most useful for system administration.
+
+4. netstat-an or netstat/an
+netstat (network statistics) is a command line tool for monitoring network connections both incoming and outgoing as well as viewing routing tables, interface statistics etc. netstat/an is a command which displays all connections and listening ports also it displays addresses and port numbers in numerical form instead of symbolic name form. 
+
+5. ping
+PING, Packet Internet Groper, is a command that is used to check the network connectivity between host and server/host. This command takes as input the IP address or the URL and sends a data packet to the specified address with the message “PING” and get a response from the server/host and this time is recorded which is called latency. It uses ICMP (Internet Control Message Protocol) to send ICMP echo message and the receiver host/server replies with ICMP reply message. Ping is generally in ms. 
+
+6. ping-t
+The ping command is used to check if a remote system is running or up. ping-t is the command used to ping the specified host until stopped. 
+
+7. pathping
+This command provides information about network latency and network loss at intermediate hops between a source and destination. This command sends multiple echo request messages to each router between a source and destination, over a period of time and then computes results based on the packets returned from each router. Because this command displays the degree of packet loss at any given router or link, you can determine which router or subnets might be having network problem.
+
+8. nslookup
+nslookup (stands for “Name Server Lookup”) is a useful command for getting information from the DNS server. It is a network administration tool for querying the Domain Name System (DNS) to obtain domain name or IP address mapping or any specific DNS record. It is also used to troubleshoot DNS-related problems. 
+
+9. arp-a
+arp command manipulates the System’s ARP cache. It also allows a complete dump of the ARP cache. ARP stands for Address Resolution Protocol. The primary function of this protocol is to resolve the IP address of a system to its mac address, and hence it works between level 2(Data link layer) and level 3(Network layer). 
+
+10. getmac
+It returns the media access control (MAC) address and list of network protocols associated with each address for all network cards in each computer, either locally or across a network. This command is particularly useful either when you want to enter the MAC address into a network analyser, or when you need to know what protocols are currently in use on each network adapter on a computer. 
